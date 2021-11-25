@@ -5,7 +5,8 @@ use App\DataProviderBuilder;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-$data = [];
+//какие то данные для апи
+$data = ['' => ''];
 
 $dataProvider = new DataProvider(
     'host',
@@ -13,10 +14,12 @@ $dataProvider = new DataProvider(
     'password'
 );
 
+//билдим декорированный провайдер
 $dataProvider = (new DataProviderBuilder($dataProvider))
     ->enabledLogs()
     ->enabledCache()
     ->enabledMySql()
     ->getResult();
 
+//получаем данные
 $dataProvider->get($data);

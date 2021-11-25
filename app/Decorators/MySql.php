@@ -5,6 +5,7 @@ namespace App\Decorators;
 use App\DataProvider\DataProviderInterface;
 use JetBrains\PhpStorm\Pure;
 
+//Декоратор MySql
 class MySql extends BaseDecorator
 {
     #[Pure] public function __construct
@@ -16,6 +17,11 @@ class MySql extends BaseDecorator
         parent::__construct($this->component);
     }
 
+    /**
+     * Берёт данные из бд, если нет то дальше по цепочке
+     * @param array $request
+     * @return array
+     */
     public function get(array $request): array
     {
         $result = $this->repository->find($request);

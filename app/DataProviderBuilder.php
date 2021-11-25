@@ -6,6 +6,9 @@ use App\Decorators\Cache;
 use App\Decorators\MySql;
 use JetBrains\PhpStorm\Pure;
 
+/**
+ * Билдер, который соберёт обёрнутый декоратор
+ */
 class DataProviderBuilder
 {
     private bool $enabledLogs = false;
@@ -21,13 +24,7 @@ class DataProviderBuilder
     {
     }
 
-    public function enabledLogs(): static
-    {
-        $this->enabledLogs = true;
-
-        return $this;
-    }
-
+//  Флаги включения декораторов
     public function enabledCache(): static
     {
         $this->enabledCache = true;
@@ -42,6 +39,7 @@ class DataProviderBuilder
         return $this;
     }
 
+//  Оборачиваем включенными декораторами
     public function getResult(): DataProviderInterface
     {
         $dataProvider = $this->dataProvider;

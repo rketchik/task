@@ -13,6 +13,11 @@ class DataProvider implements DataProviderInterface
     {
     }
 
+    /**
+     * Получение данных по апи
+     * @param array $request
+     * @return array
+     */
     public function get(array $request): array
     {
         // returns a response from external service

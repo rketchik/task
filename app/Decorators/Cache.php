@@ -4,6 +4,7 @@ namespace App\Decorators;
 
 use JetBrains\PhpStorm\Pure;
 
+//Декоратор Cache
 class Cache extends BaseDecorator
 {
     #[Pure] public function __construct
@@ -15,6 +16,11 @@ class Cache extends BaseDecorator
         parent::__construct($this->component);
     }
 
+    /**
+     * Берёт данные из кеша, если нет то дальше по цепочке
+     * @param array $request
+     * @return array
+     */
     public function get(array $request): array
     {
         $cacheKey = $this->getCacheKey($request);
@@ -34,6 +40,10 @@ class Cache extends BaseDecorator
         return $result;
     }
 
+    /**
+     * @param array $input
+     * @return bool|string
+     */
     private function getCacheKey(array $input): bool|string
     {
         return json_encode($input);
